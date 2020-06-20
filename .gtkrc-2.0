@@ -1,0 +1,9 @@
+style "desktop-icon-font"
+{
+  text[NORMAL] = "#000000"
+}
+widget_class "*DesktopIcon*" style "desktop-icon-font"
+
+# for the i3wm
+gtk-icon-theme-name = "Numix"
+gtk-theme-name = "OSX-Arc-Darker"
