@@ -30,7 +30,10 @@ filter_unmatched_urls = true
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
 
-font = Source Code Pro Medium 11
+#font = Tamzen Regular 14
+# yes
+font = Inconsolata 14.7
+#font = FiraCode Nerd Font Mono weight=450 12.
 
 [colors]
 #cursor = #dcdccc
@@ -105,7 +108,7 @@ color15 = #ebdbb2
 
 
 [hints]
-font = Source Code Pro 16
+#font = Source Code Pro 16
 #foreground = #dcdccc
 #background = #3f3f3f
 #active_foreground = #e68080

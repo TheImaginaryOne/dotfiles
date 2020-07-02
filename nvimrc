@@ -14,14 +14,21 @@ filetype off                  " required
 
 call plug#begin("~/.local/share/nvim/plugged")
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " vim airline
+" Plug 'neovim/nvim-lsp'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'lervag/vimtex'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -34,9 +41,16 @@ call plug#end()            " required
 set hidden
 " RUST
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rust-analyzer'],
     \ }
-autocmd BufReadPost *.rs setlocal filetype=rust
+"autocmd BufReadPost *.rs setlocal filetype=rust
+
+"function! Setup()
+"lua << EOF
+"	vim.cmd('packadd nvim-lsp')
+"	require'nvim_lsp'.rust_analyzer.setup{}
+"EOF
+"endfunction
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
@@ -50,7 +64,6 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" CUSTOMISATION
 
 " Airline theme
 let g:airline_theme='gruvbox'
@@ -58,10 +71,11 @@ let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1 " powerline!
 
 " Open nerdtree on start.
-autocmd vimenter * NERDTree
+
+" nmap <space>e :CocCommand explorer<CR>
 
 set background=dark
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 
 " signcolumn!
@@ -77,5 +91,5 @@ nmap <silent> <A-Right> :wincmd l<CR>
 inoremap jk <Esc>
 " LanguageClient shortcuts
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-
+nnoremap <silent> rf :call LanguageClient_textDocument_rename()<CR>
+" nmap rf <Plug>(coc-refactor)

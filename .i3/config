@@ -193,7 +193,7 @@ gaps inner 10
 exec --no-startup-id ~/.fehbg
 
 # ibus input
-exec startup-id ibus-daemon --xim -d -r
+exec_always startup-id ibus-daemon -dr --xim
 
 # vol
 # Audio shortcuts 
